@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Pendulo torsión</title>
+	<link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+	<link rel="stylesheet" href="css/bootstrap-utilities.min.css" />
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<h1 class="text-white text-center">Pendulo torsión</h1>
+			<div class="col-lg-7 col-md-7 col-sm-12">
+			<canvas id="canvas_1"  width="645" height="450"></canvas>
+			</div>
+			<div class="col-lg-4 col-md-5 col-sm-12">
+			<div id="controls" style="align: left; width: 625px; height: 100px">
+				<form name="varilla">
+					<input type="radio" name="posicion" checked /><label>Posici&oacute;n a (cm)</label>
+					<input type="range" id="posicion_a" min="5" max="15" step="1" value="10"
+						onchange="printValue('posicion_a','posicion_a_1')" />
+					<input type="text" id="posicion_a_1" value="10" size="3" /><br />
+					<input type="radio" name="posicion" /><label>Posici&oacute;n b (cm)</label>
+					<input type="range" id="posicion_b" min="15" max="22" step="1" value="20"
+						onchange="printValue('posicion_b','posicion_b_1')" />
+					<input type="text" id="posicion_b_1" value="20" size="3" /><br />
+				</form>
+				<label for="masa">Masa cilindro (g)</label>
+				<input type="text" id="masa_1" value="265" size="4" />
+
+				<div id="botones">
+					<input id="nuevo" type="button" value="Nuevo" class="btn btn-secondary"/>
+					<input id="empieza" type="button" value="&#9658;" class="btn btn-secondary"/>
+					<input id="pausa" type="button" value="||" class="btn btn-secondary"/>
+					<input id="paso" type="button" value="&gt;|" style="display: none" class="btn btn-secondary"/>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class='light x1'></div>
+	<div class='light x2'></div>
+	<div class='light x3'></div>
+	<div class='light x4'></div>
+	<div class='light x5'></div>
+	<div class='light x6'></div>
+	<div class='light x7'></div>
+	<div class='light x8'></div>
+	<div class='light x9'></div>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/bootstrap.esm.min.js"></script>
+	<script src="js/torsion.js"></script>
+</body>
+
+</html>
