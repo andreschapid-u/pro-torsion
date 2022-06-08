@@ -1,21 +1,23 @@
- <canvas id='canvas_1' width='645' height='400'></canvas>
-	<div id='controls' style='align:left; width:625px; height:100px'>
-		<form name='varilla'>
+<canvas id='canvas_1' width='645' height='400'></canvas>
+<div id='controls' style='align:left; width:625px; height:100px'>
+	<form name='varilla'>
 		<input type="radio" name="posicion" checked><label>Posici&oacute;n a (cm)</label>
-		<input type='range' id='posicion_a'  min='5' max='15' step='1' value='10' onchange="printValue('posicion_a','posicion_a_1')"/>  
-		<input type='text' id='posicion_a_1'  value='10' size='3'/><br/>
-            <input type="radio" name="posicion"><label>Posici&oacute;n b (cm)</label>
-		<input type='range' id='posicion_b'  min='15' max='22' step='1' value='20' onchange="printValue('posicion_b','posicion_b_1')"/>  
-		<input type='text' id='posicion_b_1'  value='20' size='3'/><br/>
-		</form>
-		<label for="masa">Masa cilindro (g)</label>  
-		<input type='text' id='masa_1'  value='265' size='4'/> 
+		<input type='range' id='posicion_a' min='5' max='15' step='1' value='10'
+			onchange="printValue('posicion_a','posicion_a_1')" />
+		<input type='text' id='posicion_a_1' value='10' size='3' /><br />
+		<input type="radio" name="posicion"><label>Posici&oacute;n b (cm)</label>
+		<input type='range' id='posicion_b' min='15' max='22' step='1' value='20'
+			onchange="printValue('posicion_b','posicion_b_1')" />
+		<input type='text' id='posicion_b_1' value='20' size='3' /><br />
+	</form>
+	<label for="masa">Masa cilindro (g)</label>
+	<input type='text' id='masa_1' value='265' size='4' />
 
-		<div id='botones'>
-			<input id='nuevo' type='button' value='Nuevo'/>
-<input id='empieza' type='button' value='&#9658;'/>
-<input id='pausa' type='button' value='||'/>
-<input id='paso' type='button' value='&gt;|' style='display:none'/>
-		</div>
-    </div>
-	<script src='js/torsion.js'></script>
+	<div id='botones'>
+		<input id='nuevo' type='button' value='Nuevo' />
+		<input id='empieza' type='button' value='&#9658;' />
+		<input id='pausa' type='button' value='||' />
+		<input id='paso' type='button' value='&gt;|' style='display:none' />
+	</div>
+</div>
+<script src='js/torsion.js'></script>
