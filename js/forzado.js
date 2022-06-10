@@ -55,7 +55,7 @@ beta = 0.1;
 gama = 0;
 
 //Fuerza Externa
-fe = 0.01;
+torqueExterno = 0.01;
 
 //Solición estacionaria
 solucionEstacionaria = 0;
@@ -64,7 +64,7 @@ solucionEstacionaria = 0;
 solucionComplentaria = 0;
 
 //Amplitud de la fuerza
-amplitudFuerza = 0;
+amplitudTorque = 0;
 //Frecuencia fuerza
 frecuenciaFuerza = 0;
 
@@ -139,11 +139,20 @@ pausa.disabled = true;
 
 nuevo.onclick = function (e) {
 	var masa = parseFloat(document.getElementById('masa_1').value);
+	masaVarilla = parseFloat(document.getElementById('masa_barra').value);
+	beta = parseFloat(document.getElementById('constante_amortiguamiento').value);
+	torqueExterno = parseFloat(document.getElementById('torque_externo').value);
+
+	// torqueExterno < constante_amortiguamiento
+
+
+
 	if (document.varilla.posicion[0].checked) {
 		distancia = parseFloat(document.getElementById('posicion_a_1').value);
 	} else {
 		distancia = parseFloat(document.getElementById('posicion_b_1').value);
 	}
+	Ivarilla = 1/120000 * masaVarilla * lonVarilla * lonVarilla;
 	var mInercia = Ivarilla + 4 * masa * radio * radio / 50000000 + 2 * masa * distancia * distancia / 10000000;
 	console.log(mInercia);
 	periodo = 2 * Math.PI * Math.sqrt(mInercia / cteTorsion);
@@ -161,7 +170,8 @@ nuevo.onclick = function (e) {
 	part1 = Math.pow(Math.pow(2 * Math.PI / periodo, 2) - Math.pow(frecuenciaFuerza, 2), 2);
 	part2 = Math.pow(2 * gama * frecuenciaFuerza, 2)
 
-	amplitudFuerza = (fe / mInercia) / (Math.sqrt(part1 + part2));
+	//Amplitud del torque
+	amplitudTorque = (torqueExterno / mInercia) / (Math.sqrt(part1 + part2));
 
 
 	t = 0.0;
@@ -206,11 +216,19 @@ paso.onclick = function (e) {
 
 function update() {
 	//x=Amplitud*sen(frecuencia*t+phi)
-	solucionComplementaria = maxAngulo * Math.pow(Math.E, -gama * t) * Math.sin(2 * Math.PI * t / periodo + Math.PI / 2);
-	solucionEstacionaria = amplitudFuerza * Math.sin(frecuenciaFuerza * t - 0);
-	angulo = solucionComplementaria + solucionEstacionaria;
-	console.log(angulo)
-	t += dt;
+	// (2 * Math.PI  / periodo ===> Wo debe ser mayor que gama 2 (r2)
+	wo2 = (2 * Math.PI  / periodo)
+
+	
+	if( wo2 > Math.pow(gama) ){
+		solucionComplementaria = maxAngulo * Math.pow(Math.E, -gama * t) * Math.sin(2 * Math.PI * t / periodo + Math.PI / 2);
+		solucionEstacionaria = amplitudTorque * Math.sin(frecuenciaFuerza * t - 0);
+		angulo = solucionComplementaria + solucionEstacionaria;
+		console.log(angulo)
+		t += dt;
+	}else{
+	 console.log("No es un movimiento sub amortiguado");
+	}
 }
 
 //Animación del péndulo 

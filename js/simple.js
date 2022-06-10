@@ -136,11 +136,14 @@ drawGrid('lightgray', 10, 10);
 dispositivo(ctx);
 empieza.disabled = true;
 pausa.disabled = true;
+var masaVarilla = 1;
 
 // Botón nuevo
 nuevo.onclick = function (e) {
     // Momento de inercia fijo de la varilla y desconocido
-    Ivarilla = parseFloat(document.getElementById('masa_barra').value);
+    masaVarilla = parseFloat(document.getElementById('masa_barra').value);
+    console.log(masaVarilla);
+    // Ivarilla = parseFloat(document.getElementById('masa_barra').value);
 
     // Constante de torsión de la varilla
     cteTorsion = parseFloat(document.getElementById('constante_torsion').value);
@@ -154,6 +157,8 @@ nuevo.onclick = function (e) {
     } else {
         distancia = parseFloat(document.getElementById('posicion_b_1').value);
     }
+    Ivarilla = 1/120000 * masaVarilla * lonVarilla * lonVarilla;
+
     var mInercia = Ivarilla + 4 * masa * radio * radio / 50000000 + 2 * masa * distancia * distancia / 10000000;
     periodo = 2 * Math.PI * Math.sqrt(mInercia / cteTorsion);
     t = 0.0;

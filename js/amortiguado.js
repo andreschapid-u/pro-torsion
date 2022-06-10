@@ -50,7 +50,7 @@ var orgX = canvas.width / 2,
 	Ivarilla = 0.01
 //constante de torsión de la varilla
 cteTorsion = 0.5;   //entre 0.1 y 0.5
-beta = 0.1;
+beta = 0.01;
 //Gama
 gama = 0;
 
@@ -124,12 +124,19 @@ pausa.disabled = true;
 
 nuevo.onclick = function (e) {
 	var masa = parseFloat(document.getElementById('masa_1').value);
+	masaVarilla = parseFloat(document.getElementById('masa_barra').value);
+	beta = parseFloat(document.getElementById('constante_amortiguamiento').value);
+    // Ivarilla = parseFloat(document.getElementById('masa_barra').value);
+
 	if (document.varilla.posicion[0].checked) {
 		distancia = parseFloat(document.getElementById('posicion_a_1').value);
 	} else {
 		distancia = parseFloat(document.getElementById('posicion_b_1').value);
 	}
+
+	Ivarilla = 1/120000 * masaVarilla * lonVarilla * lonVarilla;
 	var mInercia = Ivarilla + 4 * masa * radio * radio / 50000000 + 2 * masa * distancia * distancia / 10000000;
+
 	console.log(mInercia);
 	periodo = 2 * Math.PI * Math.sqrt(mInercia / cteTorsion);
 	console.log(periodo);
